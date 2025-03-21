@@ -7,6 +7,5 @@ Either ```amfi_get_out_of_my_way``` or ```arm64e_preview_abi``` boot args
 # Building
 Using Theos (https://www.theos.dev) run ```make clean package```
 
-
-
-
+# Usage 
+You can use code injection projects like (https://github.com/tealbathingsuit/ellekit), or manually inject the dylib with (https://github.com/doraorak/Dylinject)
