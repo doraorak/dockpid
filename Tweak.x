@@ -44,3 +44,8 @@
 }
 
 %end
+
+%dtor{ //fixes the issue where rebooting or quitting (not force quit) the dock.app causes pid additions to get stuck on the name labels permamently
+    pid_t pid = getpid(); 
+    kill(pid, SIGKILL); //idk if this has side effects
+}
