@@ -1,9 +1,9 @@
 Package: com.doraorak.dockpid
 Name: dockpid
-Version: 0.0.1
-Architecture: iphoneos-arm
-Description: An awesome MobileSubstrate tweak!
+Version: 1.0.2
+Architecture: darwin-arm64e
+Description: Appends the process ID of each running app to its Dock tile label with configurable styles and live updates.
 Maintainer: Dora Orak
 Author: Dora Orak
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000)
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloader
