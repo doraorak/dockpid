@@ -1,0 +1,119 @@
+<svg id="dockpid-app-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+        <defs>
+          <!-- Tech Grid Pattern -->
+          <pattern id="gridPattern" width="32" height="32" patternUnits="userSpaceOnUse">
+            <path d="M 32 0 L 0 0 0 32" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="1"></path>
+          </pattern>
+
+          <!-- Tooltip Drop Shadow -->
+          <filter id="tooltipShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.4"></feDropShadow>
+          </filter>
+
+          <!-- Dock Drop Shadow -->
+          <filter id="dockShadow" x="-10%" y="-10%" width="120%" height="130%">
+            <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.5"></feDropShadow>
+          </filter>
+
+          <!-- Clip Path for Dock Icon Rounded Rects (72x72 rx 16) -->
+          <clipPath id="dockIconClip">
+            <rect width="72" height="72" rx="16"></rect>
+          </clipPath>
+        </defs>
+
+        <!-- Solid Base Canvas (No rounded corners, fully occupying 512x512) -->
+        <rect width="512" height="512" fill="rgb(193, 178, 156)"></rect>
+        
+        <!-- Inner Decorative Tech Grid (No rounded corners to fill entire canvas) -->
+        <rect width="512" height="512" fill="url(#gridPattern)"></rect>
+
+        <!-- Warm ambient center-bottom glow under dock -->
+        <circle cx="256" cy="400" r="180" fill="#FFFFFF" opacity="0.08" filter="blur(20px)"></circle>
+
+        <!-- Premium Square Stroke Borders (Fully fills the corners) -->
+        <rect x="1" y="1" width="510" height="510" fill="none" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2"></rect>
+        <rect x="2" y="2" width="508" height="508" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="1"></rect>
+
+        <!-- ================= FLOATING DOCK SHELF ================= -->
+        <rect x="36" y="348" width="440" height="96" rx="24" fill="rgba(255, 255, 255, 0.15)" stroke="rgba(255, 255, 255, 0.25)" stroke-width="1.5" filter="url(#dockShadow)"></rect>
+
+        <!-- ================= DOCK ICONS ================= -->
+        <!-- Left Icon: Finder (Classic Apple system icon) -->
+        <g transform="translate(100, 360)">
+          <g clip-path="url(#dockIconClip)">
+            <!-- Left side light blue -->
+            <rect width="36" height="72" fill="#5AC8FA"></rect>
+            <!-- Right side darker blue -->
+            <rect x="36" width="36" height="72" fill="#007AFF"></rect>
+            <!-- Nose line & face dividing line -->
+            <path d="M 36,0 V 34 Q 30,36 30,40 Q 30,44 36,44 V 72" fill="none" stroke="#1D2A44" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <!-- Left Eye -->
+            <circle cx="18" cy="28" r="4.5" fill="#1D2A44"></circle>
+            <!-- Right Eye -->
+            <circle cx="54" cy="28" r="4.5" fill="#1D2A44"></circle>
+            <!-- Smile -->
+            <path d="M 18,48 Q 36,60 54,48" fill="none" stroke="#1D2A44" stroke-width="3.5" stroke-linecap="round"></path>
+          </g>
+          <!-- Outline border of squircle -->
+          <rect width="72" height="72" rx="16" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1"></rect>
+        </g>
+
+        <!-- Center Icon: Terminal (Classic developer app icon) -->
+        <g transform="translate(220, 360)">
+          <rect width="72" height="72" rx="16" fill="#1E1E24" stroke="rgba(255,255,255,0.15)" stroke-width="1"></rect>
+          <!-- Terminal Prompt >_ -->
+          <path d="M 20,24 L 32,32 L 20,40" fill="none" stroke="#34D399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+          <line x1="38" y1="40" x2="52" y2="40" stroke="#34D399" stroke-width="4" stroke-linecap="round"></line>
+        </g>
+
+        <!-- Right Icon: Safari (Classic Apple system icon) -->
+        <g transform="translate(340, 360)">
+          <g clip-path="url(#dockIconClip)">
+            <rect width="72" height="72" rx="16" fill="#FFFFFF"></rect>
+            <!-- Compass body -->
+            <circle cx="36" cy="36" r="25" fill="#0A84FF"></circle>
+            <!-- Compass ticks/crosshairs -->
+            <line x1="36" y1="15" x2="36" y2="19" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"></line>
+            <line x1="36" y1="53" x2="36" y2="57" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"></line>
+            <line x1="15" y1="36" x2="19" y2="36" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"></line>
+            <line x1="53" y1="36" x2="57" y2="36" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"></line>
+            <!-- Diagonal compass needle rotated 45deg -->
+            <g transform="translate(36, 36) rotate(45)">
+              <!-- Red top half -->
+              <polygon points="0,-18 5,0 -5,0" fill="#FF453A"></polygon>
+              <!-- White bottom half -->
+              <polygon points="0,18 5,0 -5,0" fill="#F2F2F7"></polygon>
+              <!-- Pivot pin -->
+              <circle cx="0" cy="0" r="2.5" fill="#FFFFFF"></circle>
+            </g>
+          </g>
+          <rect width="72" height="72" rx="16" fill="none" stroke="rgba(0,0,0,0.1)" stroke-width="1"></rect>
+        </g>
+
+        <!-- ================= RUNNING INDICATORS ================= -->
+        <circle cx="136" cy="432" r="2.5" fill="rgba(255, 255, 255, 0.8)"></circle>
+        <circle cx="256" cy="432" r="2.5" fill="rgba(255, 255, 255, 0.8)"></circle>
+        <circle cx="376" cy="432" r="2.5" fill="rgba(255, 255, 255, 0.8)"></circle>
+
+        <!-- ================= FLOATING PID TOOLTIP HUD ================= -->
+        <!-- Floating directly above the center icon -->
+        <g filter="url(#tooltipShadow)">
+          <!-- Custom Tooltip Pill (Gray bubble theme: #2C2C35) -->
+          <path d="M 142,240 
+                   H 370 
+                   A 16,16 0 0 1 386,256 
+                   V 284 
+                   A 16,16 0 0 1 370,300 
+                   H 266 
+                   L 256,310 
+                   L 246,300 
+                   H 142 
+                   A 16,16 0 0 1 126,284 
+                   V 256 
+                   A 16,16 0 0 1 142,240 
+                   Z" fill="#2C2C35" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1.5"></path>
+          
+          <!-- Text Content: Terminal [1234] -->
+          <text x="256" y="278" fill="#FFFFFF" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="-0.2px">Terminal [1234]</text>
+        </g>
+      </svg>

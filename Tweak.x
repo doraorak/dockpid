@@ -3,15 +3,23 @@
 #import "Interfaces.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
+#import "PSPreferences.h"
 
 %config(generator=internal);
 
 // MARK: - Preferences
 //
 // Domain matches the pane at /Library/PreferenceBundles/dockpidPrefs.bundle.
-// CFPreferences rather than NSUserDefaults so cfprefsd's cache can be dropped
-// explicitly when the pane posts its change notification -- Dock is long-lived
-// and would otherwise serve a stale value for the rest of its life.
+//
+// PSPreferences, not CFPreferences. A tweak's settings have to be the same in
+// every process it loads into, and CFPreferences cannot give that: inside a
+// sandboxed host it resolves to that host's container, so the value the
+// preference pane wrote is somewhere Dock will never look. PSPreferences reads
+// the one shared store at /Library/TweakInject/Preferences/Defaults instead.
+//
+// The two APIs are deliberately the same shape, so this is a prefix change.
+// (These calls used to work through CFPreferences only because libtweakLoader
+// hooked it and redirected them here; those hooks are gone.)
 
 static NSString * const kDockPidDomain = @"com.doraorak.dockpid";
 
@@ -84,13 +92,12 @@ static void DockPidRefreshTiles(void) {
 
 static void DockPidLoadPrefs(void) {
     CFStringRef domain = (__bridge CFStringRef)kDockPidDomain;
-    CFPreferencesAppSynchronize(domain);
 
     Boolean valid = false;
-    Boolean enabled = CFPreferencesGetAppBooleanValue(CFSTR("enabled"), domain, &valid);
+    Boolean enabled = PSPreferencesGetAppBooleanValue(CFSTR("enabled"), domain, &valid);
     gEnabled = valid ? (BOOL)enabled : YES;   // absent key means on, not off
 
-    id style = CFBridgingRelease(CFPreferencesCopyAppValue(CFSTR("style"), domain));
+    id style = CFBridgingRelease(PSPreferencesCopyAppValue(CFSTR("style"), domain));
     gStyle = ([style isKindOfClass:[NSString class]]) ? (NSString *)style : @"parens";
 }
 

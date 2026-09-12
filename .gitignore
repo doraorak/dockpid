@@ -1,5 +1,8 @@
 .theos/
 packages/
+.stage/
+dockpid.dylib
+*.bak
 .DS_Store
 README.md
 LICENSE

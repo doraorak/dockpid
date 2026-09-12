@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>defaults</key>
+	<string>com.doraorak.dockpid</string>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Appends the process id of each running app to its Dock tile label.</string>
+			<key>label</key>
+			<string>Dock PID</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.doraorak.dockpid/prefsChanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>key</key>
+			<string>enabled</string>
+			<key>label</key>
+			<string>Enabled</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>How the pid is written after the app name.</string>
+			<key>label</key>
+			<string>Appearance</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.doraorak.dockpid/prefsChanged</string>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<string>parens</string>
+			<key>key</key>
+			<string>style</string>
+			<key>label</key>
+			<string>Style</string>
+			<key>validTitles</key>
+			<array>
+				<string>(1234)</string>
+				<string>[1234]</string>
+				<string>— 1234</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>parens</string>
+				<string>brackets</string>
+				<string>dash</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerText</key>
+			<string>Dock persists tile labels when it exits without being force-quit, so a pid can get stuck in a name. This rewrites Dock's saved labels and restarts it.</string>
+			<key>label</key>
+			<string>Maintenance</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>cleanDockLabels</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Remove stuck pids from Dock labels</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Dock PID</string>
+</dict>
+</plist>
