@@ -6,4 +6,4 @@ Description: Appends the process ID of each running app to its Dock tile label w
 Maintainer: Dora Orak
 Author: Dora Orak
 Section: Tweaks
-Depends: mobilesubstrate (>= 0.9.5000), preferenceloaderti
+Depends: mobilesubstrate (>= 0.9.5000), preferenceloaderx
