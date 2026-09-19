@@ -7,26 +7,28 @@ cd "$DIR"
 # 1. Build tweak stage using logos and clang
 echo "==> 1. Compiling dockpid (arm64e)..."
 SDK_PATH=$(xcrun --show-sdk-path --sdk macosx)
-PREFSUPPORT_DIR="$DIR/../../XCode-projects/DYLIB/TI_PreferenceSupport"
-if [ ! -d "$PREFSUPPORT_DIR" ]; then
-    PREFSUPPORT_DIR="/Users/doraorak/Desktop/programming/XCode-projects/DYLIB/TI_PreferenceSupport"
+SUPPORT_DIR="$DIR/../../XCode-projects/DYLIB/TI_Support"
+if [ ! -d "$SUPPORT_DIR" ]; then
+    SUPPORT_DIR="/Users/doraorak/Desktop/programming/XCode-projects/DYLIB/TI_Support"
 fi
 
 TWEAKINJECT_DIR="$DIR/../../XCode-projects/APP/My apps/TweakInject"
-PREFSUPPORT_LIB="/Library/TweakInject/TI_PreferenceSupport.dylib"
-if [ ! -f "$PREFSUPPORT_LIB" ]; then
-    if [ -f "$TWEAKINJECT_DIR/Payload/TI_PreferenceSupport.dylib" ]; then
-        PREFSUPPORT_LIB="$TWEAKINJECT_DIR/Payload/TI_PreferenceSupport.dylib"
-    elif [ -f "$TWEAKINJECT_DIR/.payload-build/Build/Products/Release/TI_PreferenceSupport.dylib" ]; then
-        PREFSUPPORT_LIB="$TWEAKINJECT_DIR/.payload-build/Build/Products/Release/TI_PreferenceSupport.dylib"
+SUPPORT_LIB="/Library/TweakInject/TI_Support.dylib"
+if [ ! -f "$SUPPORT_LIB" ]; then
+    if [ -f "$TWEAKINJECT_DIR/Payload/TI_Support.dylib" ]; then
+        SUPPORT_LIB="$TWEAKINJECT_DIR/Payload/TI_Support.dylib"
+    elif [ -f "$SUPPORT_DIR/TI_Support.dylib" ]; then
+        SUPPORT_LIB="$SUPPORT_DIR/TI_Support.dylib"
+    elif [ -f "/Library/TweakInject/TI_PreferenceSupport.dylib" ]; then
+        SUPPORT_LIB="/Library/TweakInject/TI_PreferenceSupport.dylib"
     fi
 fi
 
 "$THEOS/bin/logos.pl" "$DIR/Tweak.x" > "$DIR/Tweak.m"
 clang -shared -arch arm64e -isysroot "$SDK_PATH" -fobjc-arc -fno-modules \
-    -I"$PREFSUPPORT_DIR" \
+    -I"$SUPPORT_DIR" \
     -framework Foundation -framework AppKit -framework CoreFoundation \
-    "$PREFSUPPORT_LIB" \
+    "$SUPPORT_LIB" \
     -install_name /Library/TweakInject/Tweaks/DynamicLibraries/dockpid.dylib \
     -x objective-c "$DIR/Tweak.m" \
     -o "$DIR/dockpid.dylib"
