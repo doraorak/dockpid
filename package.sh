@@ -19,8 +19,6 @@ if [ ! -f "$SUPPORT_LIB" ]; then
         SUPPORT_LIB="$TWEAKINJECT_DIR/Payload/TI_Support.dylib"
     elif [ -f "$SUPPORT_DIR/TI_Support.dylib" ]; then
         SUPPORT_LIB="$SUPPORT_DIR/TI_Support.dylib"
-    elif [ -f "/Library/TweakInject/TI_PreferenceSupport.dylib" ]; then
-        SUPPORT_LIB="/Library/TweakInject/TI_PreferenceSupport.dylib"
     fi
 fi
 
